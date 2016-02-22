@@ -2,4 +2,15 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  div
+    p Would you like to access you secrets? Please use the log in form by entering your username and password
+    form(method="POST" ACTION="/login")
+        label(for='login') Username:
+        br
+        input(name='username')
+        br
+        label(for='password') Password:
+        br
+        input(type='password', name=password)
+        br
+        input(type='submit', value='submit')
