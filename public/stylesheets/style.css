@@ -9,6 +9,7 @@ a {
 
 div{
     margin-left:50%;
-    color: darkcyan;
-    width:50%;
+    color: white;
+    width:25%;
+    background-color: darkcyan
 }
