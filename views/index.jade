@@ -1,9 +1,22 @@
 extends layout
 
 block content
-  div
-    p Welcome to your very own secret vault, where secrets are kept secret and only you can access them !
-    p Please <a href="/login">login</a> or <a href="/register">register</a> to continue!
+    h1 Welcome to the Secret Vault !
+    .intro
+        img(src="/images/closedLock.png")
     br
-    img(src="views/images/closedLock.png")
+    .intro
+        #options 
+            br
+            br
+            strong Shhhhh, 
+            span keep quiet people are trying to store their secrets
+            br
+            br
+            p The Secret Vault is the top secure place to store your secrets, where secrets are kept secret and only you can access them !
+            br
+            br
+            h3 Please <a href="/login">login</a> or <a href="/register">register</a> to access your Secret Vault
+   
+    
     

@@ -6,15 +6,39 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Secret Keeper' });
 });
 
-router.get('/login', function(req, res, next){
-   console.log("running?");  
+router.get('/login', function(req, res, next){ 
    res.render('login.jade'); 
 });
 
+router.post('/login', function(req,res,next){
+    res.redirect('secrets.jade');
+    if(req.body.user == "eiren" && req.body.password == "student"){
+        res.redirect('secrets.jade');
+        res.render('secrets.jade'); 
+    }
+    else{
+        res.redirect('/'); 
+    }
+})
 
 router.get('/register', function(req, res, next){
    res.render('register.jade'); 
 });
+
+router.post('/register', function(req, res, next){
+   //using express to send the data entered into the form and show what the user is sending
+   res.json(req.body);
+});
+
+router.get('/secrets', function(req, res, next){
+   res.render('secrets.jade'); 
+});
+
+router.get('/logout', function(req, res, next){
+   res.redirect('/'); 
+});
+
+
 /*
 //Rendering the index page
 router.get('/index', function(req,res,next){

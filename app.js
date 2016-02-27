@@ -28,6 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+app.locals.pretty = true;
+
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;

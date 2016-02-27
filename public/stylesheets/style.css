@@ -1,31 +1,57 @@
 body {
-  padding: 50px;
+  padding: 40px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: darkturquoise;
+  color: snow;
 }
 
 a {
   color: #00B7FF;
 }
 
+h1{
+    margin-left: 35%;
+}
+
 form{
-    margin-left:35%;
-    color: white;
+    margin-left:32%;
+    color: darkturquoise;
     width:20%;
-    background-color: darkcyan;
+    background-color: snow;
     border-radius: 30px;
     height: 20%;
     padding: 5%;
 }
 
-div{
-    margin-left:40%;
+label{
+    font-weight: bold;
+    margin-left: 15%;
 }
 
-p{
-    margin-bottom:7%;
-    margin-left:-30%;
+img{
+   display:inline;
 }
 
 input{
-    margin-bottom: 5%;
+    margin-bottom: 10%;
+    margin-left: 15%;
+}
+
+.intro{
+    width: 35%;
+    padding:7%;
+    padding-top:2%;
+    float:left;
+    display:inline;
+    margin-bottom: 0%;
+    padding-bottom: 0%;
+}
+
+#options{
+    background-color: snow;
+    padding:10%;
+    margin-top: 20%;
+    color: black;
+    height:275px;
+    border-radius: 80px;
 }
