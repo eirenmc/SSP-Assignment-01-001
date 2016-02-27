@@ -2,17 +2,8 @@ extends layout
 
 block content
   div
-    h1= title
+    p Welcome to your very own secret vault, where secrets are kept secret and only you can access them !
+    p Please <a href="/login">login</a> or <a href="/register">register</a> to continue!
     br
-    p Would you like to access you secrets? Please use the log in form by entering your username and password
-    br1
-  form(action="/login" method="POST")
-    label(for='login') Username:
-    br
-    input(name='username')
-    br
-    label(for='password') Password:
-    br
-    input(type='password', name=password)
-    br
-    input(type='submit', value='submit')
+    img(src="views/images/closedLock.png")
+    

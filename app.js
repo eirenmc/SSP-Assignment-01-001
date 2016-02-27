@@ -8,10 +8,13 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+//Create an express app
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
+//Tells jade to use Jade as the template engine
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
@@ -25,14 +28,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
-
-// error handlers
 
 // development error handler
 // will print stacktrace
