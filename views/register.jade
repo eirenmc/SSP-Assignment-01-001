@@ -1,0 +1,28 @@
+extends layout
+title = "Register"
+
+block content
+    h1 Create an Account
+    br
+    form(method="post")
+        label(for='fName') First Name:
+        br
+        input(type="text", name='fName', required=true)
+        br  
+        label(for='lName') Last Name:
+        br
+        input(type="text", name='lName', required=true)
+        br
+        label(for='email') Email:
+        br
+        input(type="email", name='email', required=true)
+        br
+        label(for='username') Username:
+        br
+        input(type="text", name='username', required=true)
+        br
+        label(for='password') Password:
+        br
+        input(type='password', name='password', required=true)
+        br    
+        input(type='submit', value='submit')
