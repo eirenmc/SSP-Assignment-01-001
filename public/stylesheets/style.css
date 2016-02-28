@@ -33,7 +33,7 @@ img{
 }
 
 input{
-    margin-bottom: 10%;
+    margin-bottom: 8%;
     margin-left: 15%;
 }
 
@@ -50,8 +50,26 @@ input{
 #options{
     background-color: snow;
     padding:10%;
-    margin-top: 20%;
+    margin-top: 15%;
     color: black;
     height:275px;
     border-radius: 80px;
+}
+
+.notice{
+    width: 20%;
+    padding:5%;
+    float:left;
+    display:inline;
+    margin-bottom: 0%;
+    padding-bottom: 0%;
+    background-color: snow;
+    margin-top: 5%;
+    color: black;
+    height:150px;
+    margin-left:35%;
+}
+
+button{
+    margin-left:35%;
 }

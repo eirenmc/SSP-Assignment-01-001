@@ -11,15 +11,21 @@ router.get('/login', function(req, res, next){
 });
 
 router.post('/login', function(req,res,next){
-    res.redirect('secrets.jade');
-    if(req.body.user == "eiren" && req.body.password == "student"){
-        res.redirect('secrets.jade');
+    //var username = req.body.username;
+    //var password=req.body.password;
+    //console.log("User name = "+ username+" , paswword is "+ password);
+    //res.end("yes");
+    //res.render('secrets.jade');  
+   // res.redirect('secrets.jade')  
+   /* res.send('username: ', req.body.username);
+*/
+    if(req.body.username == "eiren" && req.body.password == "student"){
         res.render('secrets.jade'); 
     }
     else{
-        res.redirect('/'); 
+        res.render('wrongLogin.jade');
     }
-})
+});
 
 router.get('/register', function(req, res, next){
    res.render('register.jade'); 
@@ -36,6 +42,10 @@ router.get('/secrets', function(req, res, next){
 
 router.get('/logout', function(req, res, next){
    res.redirect('/'); 
+});
+
+router.get('/wrongLogin', function(req, res, next){
+   res.render('wrongLogin.jade'); 
 });
 
 
