@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+//var port = 3000;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -29,7 +30,13 @@ app.use('/', routes);
 app.use('/users', users);
 
 app.locals.pretty = true;
+/////////////////////////////////
+/*
+app.listen(port, function(){
+    console.log('Server Listening on port ' + port);
+});*/
 
+/////////////////////////////////
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;

@@ -11,16 +11,17 @@ router.get('/login', function(req, res, next){
 });
 
 router.post('/login', function(req,res,next){
-    //var username = req.body.username;
-    //var password=req.body.password;
-    //console.log("User name = "+ username+" , paswword is "+ password);
+    var username = req.body.username;
+    var password=req.body.password;
+    console.log("User name = "+ username+" , paswword is "+ password);
     //res.end("yes");
     //res.render('secrets.jade');  
    // res.redirect('secrets.jade')  
    /* res.send('username: ', req.body.username);
 */
-    if(req.body.username == "eiren" && req.body.password == "student"){
-        res.render('secrets.jade'); 
+    if(username == "eiren" && password == "student"){
+        res.redirect('secrets');
+        res.render('secrets.jade');
     }
     else{
         res.render('wrongLogin.jade');
@@ -81,3 +82,23 @@ router.get('/index', function(req,res,next){
 //console.log("why");
 
 module.exports = router;
+
+///////////////////////////////
+/*
+module.exports = {
+    all: function(res,req){
+        res.send('All secrets');
+    },
+    viewOne:function(res,req){
+        console.log('Viewing '+ req.params.id);
+    },
+    create:function(res,req){
+        console.log('Secret created');
+    },
+    destroy:function(req, res){
+        console.log('Secret deleted');
+    },
+    edit:function(req,res){
+        console.log('Secrets '+req.params.id + ' updated')
+    }
+};*/
