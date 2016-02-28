@@ -1,8 +1,9 @@
 body {
-  padding: 40px;
+  padding: 40px, 40px, 40px, 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: darkturquoise;
   color: snow;
+  margin:0%;
 }
 
 a {
@@ -72,4 +73,32 @@ input{
 
 button{
     margin-left:35%;
+}
+
+.secretOp{
+    background-color: snow;
+    border-radius: 10px;
+    display: inline;
+    padding:1%;
+    widthh:20%;
+    margin-left:10%;
+}
+
+#desc{
+    background-color: snow;
+    margin-top:2%;
+    margin-bottom:2%;
+    color: black;
+    width:35%;
+    padding:2%;
+    display: inline;
+    float:left;
+}
+
+#secretList{
+    display: inline;
+}
+
+li{
+    margin-left:5%;
 }
