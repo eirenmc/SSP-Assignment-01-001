@@ -1,6 +1,22 @@
 var express = require('express');
 var router = express.Router();
 
+//Secret Array that will hold each secret
+var allSecretVault = [];
+var secretCounter = 0;
+
+var getSecretIndex = function(secretId){
+    var secretIndex = -1;
+    
+    for(var i=0; i < allSecretVault.length; i++){
+        console.log("Checking the id no: " + allSecretVault[i].id + "against: " + secretId);
+        if(allSecretVault[i].id == secretId){
+            secretIndex = i;
+        }
+    }
+    return secretIndex;
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Secret Keeper' });
@@ -11,19 +27,27 @@ router.get('/login', function(req, res, next){
 });
 
 router.post('/login', function(req,res,next){
-    var username = req.body.username;
-    var password=req.body.password;
-    console.log("User name = "+ username+" , paswword is "+ password);
+    
+     var username = req.body.username;
+     var password = req.body.password;
+    
+     console.log("User name = "+ username+" , pasword is "+ password);
     //res.end("yes");
     //res.render('secrets.jade');  
    // res.redirect('secrets.jade')  
    /* res.send('username: ', req.body.username);
 */
-    if(username == "eiren" && password == "student"){
+    if(req.body.username == "eiren" && req.body.password == "student"){
+       
+        
+       // req.session.username = username;
+       // req.session.password = password;
+        
         res.redirect('secrets');
         res.render('secrets.jade');
     }
     else{
+        res.redirect('wrongLogin');
         res.render('wrongLogin.jade');
     }
 });
@@ -38,8 +62,35 @@ router.post('/register', function(req, res, next){
 });
 
 router.get('/secrets', function(req, res, next){
-   res.render('secrets.jade'); 
+    for(var i = 0; i < allSecretVault.length; i++){
+        console.log(allSecretVault[i].secret);
+    }
+   res.render('secrets.jade', {secrets: allSecretVault}); 
 });
+/*
+router.get('/secrets', function(req, res, next){
+   res.render('secrets.jade', {secrets:allSecretVault}); 
+});*/
+
+
+
+//Dealing with a new secreet being created
+router.post('/secrets', function(req, res, next){
+    //console.log(secretCounter);
+    //Creating a secret object that has the following properties
+    var secret = {};
+    //secret.id = eq.session.secretCounter++;
+    secret.id = secretCounter;
+    secret.secret = req.body.addSecretText;
+    secretCounter++;
+    console.log(secretCounter);
+   
+    allSecretVault.push(secret);
+    //Pushing the newly created secret into the secret array
+    //req.session.allSecretVault.push(secret);
+    res.redirect('/secrets');
+});
+
 
 router.get('/logout', function(req, res, next){
    res.redirect('/'); 
@@ -49,37 +100,6 @@ router.get('/wrongLogin', function(req, res, next){
    res.render('wrongLogin.jade'); 
 });
 
-
-/*
-//Rendering the index page
-router.get('/index', function(req,res,next){
-   //problem is with the content, the router get is working but the inside of
-   //this function is not.....
-   res.redirect('.index');
-   res.render('/index', { title: 'Secret Keeper' }); 
-   console.log("rendering index");
-});*/
-
-/*  Deals with a post event from the index page and
-  if the username is Eiren and the password is student
-  then it s suppose to change to the secrets page, 
-  currently not doing this
-*/
-//router.post('/index', function(req, res){
-    //this is also working except the content but it cant be calling it correctly (the function)
-    //as the console is not running
-   // console.log("failed");
-   /* if(req.body.username == "eiren" && req.body.password == "student"){
-        res.redirect("/login");
-        res.render('login', { title: 'Secret Keeper' })
-        console.log(req.body.username);
-    }
-    //Otherwise render the index page
-    else{
-        //console.log("failed");
-    }*/
-//});
-//console.log("why");
 
 module.exports = router;
 

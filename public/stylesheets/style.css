@@ -77,11 +77,9 @@ button{
 
 .secretOp{
     background-color: snow;
-    border-radius: 10px;
     display: inline;
-    padding:1%;
-    widthh:20%;
-    margin-left:10%;
+    width:8%;
+    margin-left:0.5%;
 }
 
 #desc{
@@ -97,6 +95,7 @@ button{
 
 #secretList{
     display: inline;
+    margin-left:10%;
 }
 
 li{
