@@ -71,10 +71,6 @@ input{
     margin-left:35%;
 }
 
-button{
-    margin-left:35%;
-}
-
 .secretOp{
     background-color: snow;
     display: inline;
@@ -98,6 +94,11 @@ button{
     margin-left:10%;
 }
 
-li{
+li, button{
     margin-left:5%;
+    margin-top:0%;
+}
+
+button{
+    margin-bottom:2%;
 }

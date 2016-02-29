@@ -5,7 +5,8 @@ var router = express.Router();
 var allSecretVault = [];
 var secretCounter = 0;
 
-var getSecretIndex = function(secretId){
+
+/*var getSecretIndex = function(secretId){
     var secretIndex = -1;
     
     for(var i=0; i < allSecretVault.length; i++){
@@ -15,7 +16,7 @@ var getSecretIndex = function(secretId){
         }
     }
     return secretIndex;
-}
+}*/
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -37,18 +38,11 @@ router.post('/login', function(req,res,next){
    // res.redirect('secrets.jade')  
    /* res.send('username: ', req.body.username);
 */
-    if(req.body.username == "eiren" && req.body.password == "student"){
-       
-        
-       // req.session.username = username;
-       // req.session.password = password;
-        
+    if(req.body.username == "eiren" && req.body.password == "student"){     
         res.redirect('secrets');
-        res.render('secrets.jade');
     }
     else{
         res.redirect('wrongLogin');
-        res.render('wrongLogin.jade');
     }
 });
 
@@ -62,10 +56,19 @@ router.post('/register', function(req, res, next){
 });
 
 router.get('/secrets', function(req, res, next){
+    /*
     for(var i = 0; i < allSecretVault.length; i++){
         console.log(allSecretVault[i].secret);
     }
+    */
    res.render('secrets.jade', {secrets: allSecretVault}); 
+   
+   //Removing an entry that has been selected
+   /* for(var j = 0; j < allSecretVault.length; j++){
+        if({id: allSecretVault}.click == true){
+            allSecretVault.splice[j];
+        }   
+   }*/
 });
 /*
 router.get('/secrets', function(req, res, next){
@@ -84,7 +87,7 @@ router.post('/secrets', function(req, res, next){
     secret.secret = req.body.addSecretText;
     secretCounter++;
     console.log(secretCounter);
-   
+      
     allSecretVault.push(secret);
     //Pushing the newly created secret into the secret array
     //req.session.allSecretVault.push(secret);
@@ -102,23 +105,3 @@ router.get('/wrongLogin', function(req, res, next){
 
 
 module.exports = router;
-
-///////////////////////////////
-/*
-module.exports = {
-    all: function(res,req){
-        res.send('All secrets');
-    },
-    viewOne:function(res,req){
-        console.log('Viewing '+ req.params.id);
-    },
-    create:function(res,req){
-        console.log('Secret created');
-    },
-    destroy:function(req, res){
-        console.log('Secret deleted');
-    },
-    edit:function(req,res){
-        console.log('Secrets '+req.params.id + ' updated')
-    }
-};*/
