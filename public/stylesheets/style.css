@@ -14,7 +14,7 @@ h1{
     margin-left: 35%;
 }
 
-form{
+.style{
     margin-left:35%;
     color: darkturquoise;
     width:20%;
@@ -46,6 +46,11 @@ input{
     display:inline;
     margin-bottom: 0%;
     padding-bottom: 0%;
+}
+
+form{
+    height:20px;
+    width:0px;
 }
 
 #options{

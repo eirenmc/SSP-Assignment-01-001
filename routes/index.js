@@ -62,13 +62,15 @@ router.get('/secrets', function(req, res, next){
     }
     */
    res.render('secrets.jade', {secrets: allSecretVault}); 
-   
-   //Removing an entry that has been selected
-   /* for(var j = 0; j < allSecretVault.length; j++){
-        if({id: allSecretVault}.click == true){
-            allSecretVault.splice[j];
-        }   
-   }*/
+});
+
+router.post('/deleteme', function(req, res, next){
+    for(var j = 0; j < allSecretVault.length; j++){
+        if(req.body.id == allSecretVault[j].id){
+            allSecretVault.splice(j, 1);
+        }
+    }
+    res.redirect("/secrets");
 });
 /*
 router.get('/secrets', function(req, res, next){
