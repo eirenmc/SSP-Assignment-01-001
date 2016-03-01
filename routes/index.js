@@ -1,24 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-//Secret Array that will hold each secret
+// Creating a Secret Array so that it can hold a number of objects aka secret entries.
+// Each secret the user creates will create an object that holds the message and assign
+// it an id, this object is then pushed into the array
 var allSecretVault = [];
 var secretCounter = 0;
 
 var username;
 var password;
-
-/*var getSecretIndex = function(secretId){
-    var secretIndex = -1;
-    
-    for(var i=0; i < allSecretVault.length; i++){
-        console.log("Checking the id no: " + allSecretVault[i].id + "against: " + secretId);
-        if(allSecretVault[i].id == secretId){
-            secretIndex = i;
-        }
-    }
-    return secretIndex;
-}*/
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -96,7 +86,7 @@ router.post('/secrets', function(req, res, next){
     var secret = {};
     //secret.id = eq.session.secretCounter++;
     secret.id = secretCounter;
-    secret.secret = req.body.addSecretText;
+    secret.secretMessage = req.body.addSecretText;
     secretCounter++;
     console.log(secretCounter);
       

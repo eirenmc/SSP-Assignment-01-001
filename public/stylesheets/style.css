@@ -1,3 +1,7 @@
+/*
+    CSS styling for web application
+*/
+
 body {
   padding: 40px, 40px, 40px, 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -12,6 +16,7 @@ a {
 
 h1{
     margin-left: 35%;
+    margin-bottom:5%;
 }
 
 .style{
@@ -26,16 +31,19 @@ h1{
 
 #addSecret{
     color: darkturquoise;
-    width:18%;
     background-color: snow;
     border-radius: 30px;
     height: 20%;
     padding: 1%;
+    
+    margin-top:1%;
+    width:15%;
+    margin-left:40%;
 }
 
 label{
     font-weight: bold;
-    margin-left: 15%;
+    margin-left: 6%;
 }
 
 img{
@@ -44,7 +52,7 @@ img{
 
 input{
     margin-bottom: 8%;
-    margin-left: 15%;
+    margin-left: 6%;
 }
 
 #addingSecret{
@@ -53,11 +61,10 @@ input{
 }
 
 .intro{
-    width: 35%;
+    width:35%;
     padding:7%;
     padding-top:2%;
-    float:left;
-    display:inline;
+    float: left;
     margin-bottom: 0%;
     padding-bottom: 0%;
 }
@@ -80,7 +87,6 @@ form{
     width: 20%;
     padding:5%;
     float:left;
-    display:inline;
     margin-bottom: 0%;
     padding-bottom: 0%;
     background-color: snow;
@@ -90,34 +96,14 @@ form{
     margin-left:35%;
 }
 
-.secretOp{
-    background-color: snow;
-    display: inline;
-    width:8%;
-    margin-left:0.5%;
-}
-
-#desc{
-    background-color: snow;
-    margin-top:2%;
-    margin-bottom:2%;
-    color: black;
-    width:35%;
-    padding:2%;
-    display: inline;
-    float:left;
-}
-
-#secretList{
-    display: inline;
-    margin-left:10%;
-}
-
 li, button{
-    margin-left:5%;
-    margin-top:0%;
+    margin-top:1%;
+    width:10%;
+    margin-left:40%;
 }
 
-button{
-    margin-bottom:2%;
+#displaySecrets{
+    margin-top:1%;
+    width:15%;
+    margin-left:35%;
 }
