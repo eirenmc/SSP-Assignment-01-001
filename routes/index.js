@@ -156,6 +156,10 @@ router.get('/secrets', function(req, res, next){
     }
 });
 
+// If there is a get request for wrongAccess, call the function, and render the wrongAccess page and gives the page a title
+// of Wrong Access Point. I am doing this to handle the get request, the reason why I need a wrongAccess page and direct users
+// to it is because they are trying to access the secret page without logging in first. Because I dont want them going to the
+// secret page I need to direct them, so this directing is to inform the user this way  
 router.get('/wrongAccess', function(req, res, next){
    res.render('wrongAccess.jade', {title: 'Wrong Entry Point'}); 
 });
