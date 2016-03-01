@@ -175,7 +175,21 @@ router.get('/wrongAccess', function(req, res, next){
 
 
 router.get('/secrets', function(req, res, next){
-   res.render('secrets.jade', {secrets:allSecretVault}); 
+   ////////////
+ //  res.render('secrets.jade', {secrets:allSecretVault}); 
+   ////////////
+   console.log("please work");
+    mongoClient.connect(url, function(err, conn) {
+       if (err) {
+           console.log(err);
+           throw err;
+       } else {
+           var cursor = conn.collection('secrets').find();
+           cursor.toArray(function(err, docs){
+              res.render('secrets', {secret: docs}); 
+           });
+       }
+    });
 });
 
 
@@ -198,8 +212,12 @@ router.post('/secrets', function(req, res, next){
     // A secret entry onto the secret page does not occur until it has been pushed into the array and the page is
     //'reloaded' but unaware to the user, to show the newest and old secrets
     var secret = {};
-   
+    
+ ///////
+ /*  
     secret.id = secretCounter;
+*/
+////////    
     secret.secretMessage = req.body.addSecretText;
       
     //Something the session
@@ -207,18 +225,49 @@ router.post('/secrets', function(req, res, next){
     
     //I am increasing the secretCounter as it is acting as ids for each object. By increasing this number after
     // each object is made, this ensures that each object has a unqiue id
+///////////
+/*
     secretCounter++;
     console.log(secretCounter);
-    
+*/
+//////////    
     // Here I am pushing the objects into the array, so I can loop through them   
     allSecretVault.push(secret);
+    
+    mongoClient.connect(url, function(err, conn) {
+        if(err){
+            console.log(err);
+            throw err;
+        } else {
+            conn.collection('secret').insertOne(secret, function(err, result){
+                // This callback is going to get called by the insertOne function
+                // when either the insertion has been successful or not.
+                if (err) {
+                    console.log(err);
+                    throw err;
+                }
+                else {
+                    console.log("Insertion complete");
+                    conn.close();
+                }
+            });
+            
+            // Notice that I render the index page without even waiting for the db to say that 
+            // it has inserted the document
+            res.render('secrets', { title: 'Secret Vault' });
+        }
+    });
     
     //req.session.allSecretVault.push(secret);
     
     // Once a secret has been pushed in the array, I am reloading the secrets page, so that
     // it 'refreshes' but occurs in the background and the user is unaware and the secrets
     // have updated and are added to the page for the user to see
+///////////   
+/*   
     res.redirect('/secrets');
+*/
+///////////    
 });
 
 // This function deals with the deletion of a secret. This will run when a post request for 
