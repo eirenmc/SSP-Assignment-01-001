@@ -49,7 +49,10 @@ router.get('/', function(req, res, next) {
 // where this request is most likely to occur where the button holds a link to the login, so therefore
 // I need to load the login page for the user
 router.get('/login', function(req, res, next){ 
-
+    
+    username = "";
+    password = "";
+    
     // This line is rendering the login page, as the user is requesting, I need to direct them to it, 
     // again I am also using a dynmaic page title so I only need to change on the index.js and not 
     // search through pages looking for the right one 
@@ -64,6 +67,7 @@ router.post('/login', function(req,res,next){
     // This is used to allow me to get the values of login in forms fields username and password. By 
     // getting these and storing them in a variable I am able to test and see do they hold the correct
     // pre-defined login details
+     
      username = req.body.username;
      password = req.body.password;
      
