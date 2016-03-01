@@ -5,6 +5,8 @@ var router = express.Router();
 var allSecretVault = [];
 var secretCounter = 0;
 
+var username;
+var password;
 
 /*var getSecretIndex = function(secretId){
     var secretIndex = -1;
@@ -20,8 +22,11 @@ var secretCounter = 0;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  username = "";
   res.render('index', { title: 'Secret Keeper' });
 });
+
+/*------------------ Login Page ----------------------*/
 
 router.get('/login', function(req, res, next){ 
    res.render('login.jade'); 
@@ -29,8 +34,8 @@ router.get('/login', function(req, res, next){
 
 router.post('/login', function(req,res,next){
     
-     var username = req.body.username;
-     var password = req.body.password;
+     username = req.body.username;
+     password = req.body.password;
     
      console.log("User name = "+ username+" , pasword is "+ password);
     //res.end("yes");
@@ -46,6 +51,8 @@ router.post('/login', function(req,res,next){
     }
 });
 
+/*------------------ Registration Page ----------------------*/
+
 router.get('/register', function(req, res, next){
    res.render('register.jade'); 
 });
@@ -55,28 +62,31 @@ router.post('/register', function(req, res, next){
    res.json(req.body);
 });
 
+/*------------------Secrets Page -----------------------*/
+
 router.get('/secrets', function(req, res, next){
     /*
     for(var i = 0; i < allSecretVault.length; i++){
         console.log(allSecretVault[i].secret);
     }
     */
-   res.render('secrets.jade', {secrets: allSecretVault}); 
+    if(username == "eiren" && password == "student"){     
+        console.log("the correct username is: " + username);
+        res.render('secrets.jade', {secrets: allSecretVault});
+    }
+    else{
+        console.log("the wrong username is: " + username);
+        res.redirect('wrongLogin');
+    }
+    
+    
+  /* console.log("the username is: " + username);
+   res.render('secrets.jade', {secrets: allSecretVault}); */
 });
 
-router.post('/deleteme', function(req, res, next){
-    for(var j = 0; j < allSecretVault.length; j++){
-        if(req.body.id == allSecretVault[j].id){
-            allSecretVault.splice(j, 1);
-        }
-    }
-    res.redirect("/secrets");
-});
-/*
 router.get('/secrets', function(req, res, next){
    res.render('secrets.jade', {secrets:allSecretVault}); 
-});*/
-
+});
 
 
 //Dealing with a new secreet being created
@@ -96,8 +106,19 @@ router.post('/secrets', function(req, res, next){
     res.redirect('/secrets');
 });
 
+router.post('/deleteme', function(req, res, next){
+    for(var j = 0; j < allSecretVault.length; j++){
+        if(req.body.id == allSecretVault[j].id){
+            allSecretVault.splice(j, 1);
+        }
+    }
+    res.redirect("/secrets");
+});
+
 
 router.get('/logout', function(req, res, next){
+    username = "";
+    password = "";
    res.redirect('/'); 
 });
 

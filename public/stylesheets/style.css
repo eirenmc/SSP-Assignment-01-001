@@ -24,6 +24,15 @@ h1{
     padding: 5%;
 }
 
+#addSecret{
+    color: darkturquoise;
+    width:18%;
+    background-color: snow;
+    border-radius: 30px;
+    height: 20%;
+    padding: 1%;
+}
+
 label{
     font-weight: bold;
     margin-left: 15%;
@@ -36,6 +45,11 @@ img{
 input{
     margin-bottom: 8%;
     margin-left: 15%;
+}
+
+#addingSecret{
+    margin-bottom: 1%;
+    margin-left: 1%;
 }
 
 .intro{
