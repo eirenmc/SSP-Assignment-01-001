@@ -53,7 +53,7 @@ router.get('/login', function(req, res, next){
     // This line is rendering the login page, as the user is requesting, I need to direct them to it, 
     // again I am also using a dynmaic page title so I only need to change on the index.js and not 
     // search through pages looking for the right one 
-    res.render('login.jade', { title: 'Secret Vault Login' }); 
+    res.render('login.jade', { title: 'Secret Login' }); 
 });
 
 // This is dealing with a post request from the login page. I am using this to handle the details
@@ -148,9 +148,14 @@ router.get('/secrets', function(req, res, next){
         //For testing purposes, I am console logging the username, so I can make sure that the username is not eiren
         console.log("the wrong username is: " + username);
         // As the username is not eiren, I don't want the user to go the secrets page, so I am directing them to an alternative page
-        res.redirect('/login');
+        res.redirect('/wrongAccess');
     }
 });
+
+router.get('/wrongAccess', function(req, res, next){
+   res.render('wrongAccess.jade', {title: 'Wrong Entry Point'}); 
+});
+
 
 router.get('/secrets', function(req, res, next){
    res.render('secrets.jade', {secrets:allSecretVault}); 
