@@ -21,6 +21,15 @@ var secretCounter = 0;
 var username;
 var password;
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+var mongoClient = require('mongodb').MongoClient;
+var url = process.env.CUSTOMCONNSTR_MongoDB || 'mongodb://localhost:27017/secretVaultData'; 
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
 /* GET home page. */
 // If the user goes to a the page with just a / at the end of the url, it will default to the
 // index page, this is to ensure that the user doesn't end up in the secrets pae or somewhere else

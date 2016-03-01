@@ -23,6 +23,28 @@ var routes = require('./routes/index');
 // the right user
 //var session = require('express-session');
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+var mongoClient = require('mongodb').MongoClient;
+
+
+// If I am running locally then use 'mongodb://localhost:27017/test' otherwise
+// look for the environment variable
+var url = process.env.CUSTOMCONNSTR_MongoDB || 'mongodb://localhost:27017/secretVaultData'; 
+
+// Let's test to see if we can commect to the DB, if we can we will close it again.
+mongoClient.connect(url, function(err, conn) {
+        if(err){
+            console.log(err.message);
+            throw err;
+        } else {
+            console.log("Connected to DB");
+            conn.close();
+        }
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
 // Making the app variable equal to express. This is used to allow me to create 
 // an express app, code in it and tell the app it needs to use express
 var app = express();
