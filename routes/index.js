@@ -141,17 +141,15 @@ router.get('/secrets', function(req, res, next){
         console.log("the correct username is: " + username);
         
         // This line is rendering the secrets page, as the user is requesting, I need to direct them to it. I am also trying
-        // to access the secrets in the allSecretArray.
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // to access the secrets in the array seccret vault in order to be able to display them on the page
         res.render('secrets.jade', {secrets: allSecretVault});
     }
     else{
+        //For testing purposes, I am console logging the username, so I can make sure that the username is not eiren
         console.log("the wrong username is: " + username);
+        // As the username is not eiren, I don't want the user to go the secrets page, so I am directing them to an alternative page
         res.redirect('/login');
     }
-     
-  /* console.log("the username is: " + username);
-   res.render('secrets.jade', {secrets: allSecretVault}); */
 });
 
 router.get('/secrets', function(req, res, next){
@@ -187,24 +185,45 @@ router.post('/secrets', function(req, res, next){
     res.redirect('/secrets');
 });
 
+// This function deals with the deletion of a secret. This will run when a post request for 
+// deleteme is sent. I am looping through the array so I can pick out the secret object that
+// has been selected by the user. The delete works through a delete button, the delete button
+// is created when the secret li is being created in the jade (see secrets.jade), this delete
+// I am creating a hidden input field that holds the id of the secret. Using this is I am 
+// checking if the delete button of a particular secret (holding the secrets id) matches with 
+// an id of the array, and finding that id its related to and removing the object from the array
 router.post('/deleteme', function(req, res, next){
     for(var j = 0; j < allSecretVault.length; j++){
         if(req.body.id == allSecretVault[j].id){
             allSecretVault.splice(j, 1);
         }
     }
+    //Once a secret has been deleted, I am directing the user back to the secrets page, this is
+    // acting as a 'refresh' of the page, which the user is unaware of, so I can update the contents
+    // of the array now that an object has been removed.
     res.redirect("/secrets");
 });
 
 
+// This is a get request for logout, this only occurs when the user clicks on the logout
+// button on the secrets page as the user is ready to leave the secret vault
 router.get('/logout', function(req, res, next){
+    // As the user is logging out, I want the username and password to be empty again, once
+    // they leave, this way if they change to a different page on the web application and
+    // go back to secrets via the url, they should be logged out as they have 'logged out'    
     username = "";
     password = "";
-   res.redirect('/'); 
+    //As I am logging out the user, I need somewhere to send them to, So I direct the user to
+    // the index page as it is the most logical place for a user to be placed once they are logged out
+    res.redirect('/'); 
 });
 
+// This function will only run when a get request for wrongLogin occurs, the only place this occurs
+// Is on the login page. If the user puts in the wrong details they are directed to this page. In order 
+// to handle this, this function will display the wrong login page to the user. This function also deals
+// with assigning a title that is controlled in the index.js not the individual page
 router.get('/wrongLogin', function(req, res, next){
-   res.render('wrongLogin.jade'); 
+   res.render('wrongLogin.jade', {title: 'Wrong Login'}); 
 });
 
 
