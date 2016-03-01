@@ -157,31 +157,45 @@ router.get('/secrets', function(req, res, next){
 });
 
 
-//Dealing with a new secreet being created
+//This is for dealing with a new post request for secrets
 router.post('/secrets', function(req, res, next){
 
-// Creating a secret object that will have a number of properties such as the secret 
-// message the user typed and a unique id. This object will be pushed into an array
-// and displayed on the secret page. 
+    // These next few lines of code are creating a secret object that will have a number 
+    // of properties such as the secret message the user typed and a unique id that is being assigned.
+    // This object will be pushed into an array and displayed on the secret page. 
 
-//Explain Structure of the object, how it is displayed,
-
-
-//As it is going into the array I will also be looping through it to see if any of the objects delete buttons get clicked on
-    var secret = {};
+    // I am creating an empty object as I want to assign a number of different properties. Each object 
+    // gets two properties, one is the id, this is a number being assigned to it from a variable I 
+    // declared at the beginning - secretCounter, and the other is the secretMessage. The secretMessage
+    // gets its value from the text in the input field addSecretText. I am taking this text and storing
+    // it in the secretMessage property.
     
+    // As each object will later be added into the allSecretVault array, that I will loop through to display
+    // each secret or if any need to be deleted
+    
+    // A secret entry onto the secret page does not occur until it has been pushed into the array and the page is
+    //'reloaded' but unaware to the user, to show the newest and old secrets
+    var secret = {};
+   
+    secret.id = secretCounter;
+    secret.secretMessage = req.body.addSecretText;
+      
     //Something the session
     //secret.id = eq.session.secretCounter++;
     
-    
-    secret.id = secretCounter;
-    secret.secretMessage = req.body.addSecretText;
+    //I am increasing the secretCounter as it is acting as ids for each object. By increasing this number after
+    // each object is made, this ensures that each object has a unqiue id
     secretCounter++;
     console.log(secretCounter);
-      
+    
+    // Here I am pushing the objects into the array, so I can loop through them   
     allSecretVault.push(secret);
-    //Pushing the newly created secret into the secret array
+    
     //req.session.allSecretVault.push(secret);
+    
+    // Once a secret has been pushed in the array, I am reloading the secrets page, so that
+    // it 'refreshes' but occurs in the background and the user is unaware and the secrets
+    // have updated and are added to the page for the user to see
     res.redirect('/secrets');
 });
 
