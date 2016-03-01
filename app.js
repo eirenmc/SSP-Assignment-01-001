@@ -21,7 +21,7 @@ var routes = require('./routes/index');
 // in my app as I want to be able to store the users activities, eg. when they 
 // enter the app their secrets are still present as long as they are logged into 
 // the right user
-var session = require('express-session');
+//var session = require('express-session');
 
 // Making the app variable equal to express. This is used to allow me to create 
 // an express app, code in it and tell the app it needs to use express

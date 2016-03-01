@@ -137,10 +137,11 @@ router.get('/secrets', function(req, res, next){
     // and the user is re-directed back to the login page.
     if(username == "eiren" && password == "student"){ 
         
-// I am consoling out the username just to ensure that 'eiren' is being passed through and that it is the stored value
+// I am console logging out the username just to ensure that 'eiren' is being passed through and that it is the stored value
         console.log("the correct username is: " + username);
         
-        // This line is rendering the secrets page, as the user is requesting, I need to direct them to it, 
+        // This line is rendering the secrets page, as the user is requesting, I need to direct them to it. I am also trying
+        // to access the secrets in the allSecretArray.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         res.render('secrets.jade', {secrets: allSecretVault});
     }
