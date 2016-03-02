@@ -31,7 +31,7 @@ var mongoClient = require('mongodb').MongoClient;
 
 // This is a variable that will either run the database from the set environment variables I have
 // set online or local host address
-var url = process.env.CUSTOMCONNSTR_MongoDB || 'mongodb://localhost:27017/secretVaultData'; 
+var url = process.env.CUSTOMCONNSTR_mongoEiren || 'mongodb://localhost:27017/secretVaultData'; 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
