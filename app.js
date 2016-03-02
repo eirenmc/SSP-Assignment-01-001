@@ -15,24 +15,22 @@ var bodyParser = require('body-parser');
 // without this I would not be able to direct the server to look at my index.js file 
 // for my written functionality such as getting/posting to pages
 var routes = require('./routes/index');
-//var users = require('./routes/users');
-
-// Creating a variable called session, this code is for me to be able to sessions 
-// in my app as I want to be able to store the users activities, eg. when they 
-// enter the app their secrets are still present as long as they are logged into 
-// the right user
-//var session = require('express-session');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
+// MongoDB Code
 
+// I am requiring mongoDB and client so I can establish a database and connection so secrets can
+// be stored in the database
 var mongoClient = require('mongodb').MongoClient;
 
 
-// If I am running locally then use 'mongodb://localhost:27017/test' otherwise
-// look for the environment variable
+// This is a variable that will either run the database from the set environment variables I have
+// set online or local host address
 var url = process.env.CUSTOMCONNSTR_MongoDB || 'mongodb://localhost:27017/secretVaultData'; 
 
-// Let's test to see if we can commect to the DB, if we can we will close it again.
+// As I had trouble in the past with MongoDB, I wanted to make sure that a connection was being
+// established and if it is establishing a connection it console logs it for me, with this I know
+// the mongoDB database is connected and working
 mongoClient.connect(url, function(err, conn) {
         if(err){
             console.log(err.message);
@@ -69,24 +67,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-////////////////////////////////////////////////////////
-// Part of my session code before moving past 
-// it in order to get basic functionality working first
-
-// Setting up the express session
-/*
-var expressSessionOptions = {
-  secret:'mySecret',
-  resave: false,
-  saveUninitialized: false
-}
-app.use(session(expressSessionOptions));
-*/
-
-///////////////////////////////////////////////////////
-
 app.use('/', routes);
-//app.use('/users', users);
 
 /*
   This is a line, that when you inspect the html 

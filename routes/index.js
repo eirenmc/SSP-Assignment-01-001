@@ -23,10 +23,14 @@ var password;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
+// MongoDB
 
-// Here are the Mongo requireing in order to get mongoDB to work, I am also making the url 
-// variable equal the either the set connection string from MongoDB or use the local host
+// I am requiring mongoDB and client so I can establish a database and connection so secrets can
+// be stored in the database
 var mongoClient = require('mongodb').MongoClient;
+
+// This is a variable that will either run the database from the set environment variables I have
+// set online or local host address
 var url = process.env.CUSTOMCONNSTR_MongoDB || 'mongodb://localhost:27017/secretVaultData'; 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -177,21 +181,29 @@ router.get('/wrongAccess', function(req, res, next){
 
 router.get('/secrets', function(req, res, next){
 
-  //res.render('secrets.jade', {secrets:allSecretVault});
-  //res.json(req.body); 
-  
-   ////////////////////////////////////////////////////////////
-   console.log("please work");
+    //res.render('secrets.jade', {secrets:allSecretVault});
+    //res.json(req.body); 
+    
+/////////////////////////////////////////////////////////////////
+    // MongoDB
+    
+    // Connecting to the mongoClient and passing in the ur which is either going to be the local
+    // host or the set environment variables. This code will check to see if an error nd if so,
+    // It will throw an error but ifs there is a connection and it is working it will make a collection
+    // of secrets and store them in a variable called cursor, this is used so I can point to where the
+    // database can find and know where to store data passed to it. This establishing a connection with
+    // the database when the user is on the secrets page
+    
     mongoClient.connect(url, function(err, conn) {
-       if (err) {
-           console.log(err);
-           throw err;
-       } else {
-           var cursor = conn.collection('secrets').find();
-           cursor.toArray(function(err, docs){
-              res.render('secrets', {secret: docs}); 
-           });
-       }
+        if (err) {
+            console.log(err);
+            throw err;
+        } else {
+            var cursor = conn.collection('secrets').find();
+            cursor.toArray(function(err, docs){
+                res.render('secrets', {secret: docs}); 
+            });
+        }
     });
    //////////////////////////////////////////////////////////// 
 });
@@ -219,28 +231,36 @@ router.post('/secrets', function(req, res, next){
     secret.id = secretCounter;
     secret.secretMessage = req.body.addSecretText;
     
+    // I am also creating a date for each message, at the beginning I was getting the property .getDate but I didn't like
+    // the way it was displaying it, So I thought I would piece together the way I want the date to display, in order to this
+    // I needed to create three variables that got the date information and another variable for tying it all together.
     var date = new Date();
     var currentDay = date.getDay();
     var currentMonth = date.getMonth();
     var currentYear = date.getFullYear();
     var combinedDate = currentDay + "/" + currentMonth + "/" + currentYear;
     secret.date = combinedDate;
+    
     //I am increasing the secretCounter as it is acting as ids for each object. By increasing this number after
     // each object is made, this ensures that each object has a unqiue id
-
     secretCounter++;
    
     // Here I am pushing the objects into the array, so I can loop through them   
     allSecretVault.push(secret);
     
+    ////////////////////////////////////////////////////////////////////////////////  
+    //MongoDB
+    
+    // After the user has added a secret, I am re-establishing a connection to the database so new entries in the database
+    // can be displayed. Again, I am checking to see if a connection is being made if not, it will throw and error and I
+    // need to figure out how to fix it, otherwise I have a connection and it is telling me that the array object was added
+    // to the database before I close the connection
     mongoClient.connect(url, function(err, conn) {
         if(err){
             console.log(err);
             throw err;
         } else {
             conn.collection('secret').insertOne(secret, function(err, result){
-                // This callback is going to get called by the insertOne function
-                // when either the insertion has been successful or not.
                 if (err) {
                     console.log(err);
                     throw err;
@@ -250,6 +270,7 @@ router.post('/secrets', function(req, res, next){
                     conn.close();
                 }
             });
+          /////////////////////////////////////////////////////////////////////////////////////
             
            // Orignally had this line, but it was causing an error to occur about 
            // unable to set errors after they are sent, I found by commenting this
@@ -257,17 +278,11 @@ router.post('/secrets', function(req, res, next){
            // res.render('secrets', { title: 'Secret Vault' });
         }
     });
-    
-   // req.session.allSecretVault.push(secret);
-    
+
     // Once a secret has been pushed in the array, I am reloading the secrets page, so that
     // it 'refreshes' but occurs in the background and the user is unaware and the secrets
     // have updated and are added to the page for the user to see
-///////////   
-/* */  
-    res.redirect('/secrets');
-
-///////////    
+    res.redirect('/secrets'); 
 });
 
 // This function deals with the deletion of a secret. This will run when a post request for 
