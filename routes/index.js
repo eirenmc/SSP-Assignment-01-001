@@ -218,16 +218,21 @@ router.post('/secrets', function(req, res, next){
     var secret = {};
     
  /* -- */
-   // secret.id = secretCounter;
+    secret.id = secretCounter;
 /* -- */
    
     secret.secretMessage = req.body.addSecretText;
-    
+  /*  var date = new Date();
+    var currentDay = date.getDay();
+    var currentMonth = date.getMonth();
+    var currentYear = date.getFullYear();
+    var combinedDate = currentDay + "/" + currentMonth + "/" + currentYear;
+    secret.date = combinedDate;*/
     //I am increasing the secretCounter as it is acting as ids for each object. By increasing this number after
     // each object is made, this ensures that each object has a unqiue id
 ///////////
 /**/
-  //  secretCounter++;
+    secretCounter++;
   //  console.log(secretCounter);
 
 //////////    
