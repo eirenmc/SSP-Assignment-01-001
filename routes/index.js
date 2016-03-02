@@ -202,7 +202,7 @@ router.get('/secrets', function(req, res, next){
             //var cursor = conn.collection('secrets').find();
             //cursor.toArray(function(err, docs){
                 res.render('secrets', {secret: docs}); 
-            });
+           // });
         }
     });
    //////////////////////////////////////////////////////////// 
