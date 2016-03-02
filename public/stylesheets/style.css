@@ -1,6 +1,8 @@
 /*
     CSS styling for web application
 */
+
+/* General References */
 body {
   padding: 40px, 40px, 40px, 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -9,10 +11,61 @@ body {
   margin:0%;
 }
 
-a {
-  color: black;
+a:link, a {
+    background-color: green;
+    color: white;
+    border: 2px solid green;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin:5% 0% 0% 18%;
 }
 
+a:hover, a:active {
+    background-color: white;
+    color: black;
+}
+
+label{
+    font-weight: bold;
+    margin-left: 0%;
+    margin-bottom: 1%;
+}
+
+img{
+   display:inline;
+}
+
+h1, h4{
+    margin:0%;
+    padding:1% 1%;
+}
+
+h1{
+    margin:3% 0% 0% 15%;
+}
+
+h4{
+    margin-bottom: 0%;
+    padding-bottom: 0%;
+}
+
+form{
+    height:20px;
+    width:0px;
+}
+
+input{
+    padding:2%;
+    margin-bottom: 4%;
+}
+
+img[alt='lock']{
+    margin-left:45%;
+}
+
+/* Secret Page */
 #addSecret{
     color: black;
     background-color: #d9dbd6;
@@ -41,17 +94,22 @@ li {
     margin-left:35%;
 }
 
-/* -----------------------------*/
-label{
-    font-weight: bold;
-    margin-left: 0%;
-    margin-bottom: 1%;
+#secretTitle{
+    margin:3% 25% 0% 35%;
+    padding:0%;
 }
 
-img{
-   display:inline;
+#secretLogOutSpace{
+    margin-left: 43%;
+    margin-top:2%;
 }
 
+/* ---- Registration ---- */
+ #regForm{
+        margin-left: 37%;
+} 
+
+/* ---- Index ---- */
 .intro{
     width:35%;
     padding:7%;
@@ -69,6 +127,11 @@ img{
     height: 275px;
 }
 
+#introTitle{
+    margin-left: 30%;
+}
+
+/* ---- Wrong Login ---- */
 #wrongLogin{
     margin-left: 25%;
 }
@@ -77,51 +140,14 @@ img{
     margin-left: 4%;
 }
 
+/* ---- Wrong Access ----*/
 #wrongAccess{
-    margin-left:35%;
+    margin-left :35%;
 }
 
-a{
-    text-decoration: none;
-}
-
-h1, h4{
-    margin:0%;
-    padding:1% 1%;
-}
-
-h1{
-    margin:3% 0% 0% 15%;
-}
-
-h4{
-    margin-bottom: 0%;
-    padding-bottom: 0%;
-}
-
+/*---- Login Page ---- */
 .loginBtn{
-    margin-top: 2%;
-}
-
-a:link, a {
-    background-color: green;
-    color: white;
-    border: 2px solid green;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin:5% 0% 0% 18%;
-}
-
-a:hover, a:active {
-    background-color: white;
-    color: black;
-}
-
-.formPages{
-    margin:3% 0% 0% 10%;
-    width:80%;
+    margin-top : 2%;
 }
 
 #form{
@@ -129,47 +155,27 @@ a:hover, a:active {
     padding: 0%;
 }
 
+/* ---- Shared between Login and Registration ---- */
+
+.formPages{
+    margin:3% 0% 0% 10%;
+    width :80%;
+}
+
 .style{
-    margin-left:35%;
+    margin-left :35%;
     width:20%;
     background-color: #d9dbd6;
     height: 20%;
     padding: 5%;
-    margin-top: 3%;
-}
-
-form{
-    height:20px;
-    width:0px;
+    margin-top : 3%;
 }
 
 .formPages > div > a:link{
-    margin: 2% 0% 0% 45%; 
+    margin : 2% 0% 0% 45%; 
 }
 
-input{
-    padding:2%;
-    margin-bottom: 4%;
-}
-
-#introTitle{
-    margin-left: 30%;
-}
-
-#secretTitle{
-    margin:3% 25% 0% 35%;
-    padding:0%;
-}
-
-#secretLogOutSpace{
-    margin-left: 43%;
-    margin-top:2%;
-}
-
-img[alt='lock']{
-    margin-left:45%;
-}
-
+/* ---- Media Queries ---- */
 @media screen and (max-width: 1100px) {
     #wrongAccess{
         margin-left: 25%;
