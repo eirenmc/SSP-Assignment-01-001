@@ -1,7 +1,6 @@
 /*
     CSS styling for web application
 */
-
 body {
   padding: 40px, 40px, 40px, 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -15,66 +14,23 @@ a {
 }
 
 #addSecret{
-    color: darkturquoise;
-    background-color: snow;
+    color: black;
+    background-color: #d9dbd6;
     border-radius: 30px;
     height: 20%;
-    padding: 1%;
-    
+    padding: 2%;  
     margin-top:1%;
     width:15%;
-    margin-left:40%;
+    margin-left:37%;
 }
-
-label{
-    font-weight: bold;
-    margin-left: 6%;
-}
-
-img{
-   display:inline;
-}
-
 
 #addingSecret{
     margin-bottom: 1%;
+    padding-bottom: 3%;
     margin-left: 1%;
 }
 
-.intro{
-    width:35%;
-    padding:7%;
-    padding-top:2%;
-    float: left;
-    margin-bottom: 0%;
-    padding-bottom: 0%;
-}
-
-
-
-#options{
-    background-color: snow;
-    padding:10%;
-    margin-top: 15%;
-    color: black;
-    height:275px;
-    border-radius: 80px;
-}
-
-.notice{
-    width: 20%;
-    padding:5%;
-    float:left;
-    margin-bottom: 0%;
-    padding-bottom: 0%;
-    background-color: snow;
-    margin-top: 5%;
-    color: black;
-    height:150px;
-    margin-left:35%;
-}
-
-li{
+li {
     margin-top:1%;
     margin-left:40%;
 }
@@ -86,6 +42,33 @@ li{
 }
 
 /* -----------------------------*/
+label{
+    font-weight: bold;
+    margin-left: 0%;
+    margin-bottom: 1%;
+}
+
+img{
+   display:inline;
+}
+
+.intro{
+    width:35%;
+    padding:7%;
+    padding-top:2%;
+    float: left;
+    margin-bottom: 0%;
+    padding-bottom: 0%;
+}
+
+#options{
+    background-color: #d9dbd6;
+    padding:10%;
+    margin-top: 10%;
+    color: black;
+    height: 275px;
+}
+
 #wrongLogin{
     margin-left: 25%;
 }
@@ -108,8 +91,7 @@ h1, h4{
 }
 
 h1{
-    margin-top:3%;
-    margin-left: 15%;
+    margin:3% 0% 0% 15%;
 }
 
 h4{
@@ -129,8 +111,7 @@ a:link, a {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin-left: 18%;
-    margin-top: 5%;
+    margin:5% 0% 0% 18%;
 }
 
 a:hover, a:active {
@@ -138,17 +119,14 @@ a:hover, a:active {
     color: black;
 }
 
-/* ---- Login and Reg Pages ---- */
 .formPages{
-    margin-top:3%;
+    margin:3% 0% 0% 10%;
     width:80%;
-    margin-left: 10%;
 }
 
 #form{
-    margin: 0%;
+    margin: 0% 0% 0% 46%;
     padding: 0%;
-    margin-left:46%;
 }
 
 .style{
@@ -166,15 +144,33 @@ form{
 }
 
 .formPages > div > a:link{
-    margin-left: 45%;
-    margin-top: 2%;
+    margin: 2% 0% 0% 45%; 
 }
 
+input{
+    padding:2%;
+    margin-bottom: 4%;
+}
+
+#introTitle{
+    margin-left: 30%;
+}
+
+#secretTitle{
+    margin:3% 25% 0% 35%;
+    padding:0%;
+}
+
+#secretLogOutSpace{
+    margin-left: 43%;
+    margin-top:2%;
+}
+
+img[alt='lock']{
+    margin-left:45%;
+}
 
 @media screen and (max-width: 1100px) {
-    /*---------------------*/
-    /*Wrong Access*/
-    /* --------------------*/
     #wrongAccess{
         margin-left: 25%;
     }
@@ -182,13 +178,13 @@ form{
     #wrongLogin{
         margin-left: 20%;
     }
-  
+    
+    .intro {
+        padding-left:5%;
+    } 
 }
 
 @media screen and (max-width: 850px) {
-    /*---------------------*/
-    /*Wrong Access*/
-    /* --------------------*/
     #wrongAccess{
         margin-left: 20%;
     }
@@ -213,13 +209,23 @@ form{
     
     #regForm{
         margin-left: 30%;
+    } 
+    
+    .intro > img, .intro{
+     width:40%;
+     margin-left:12%;
+     padding:0%;   
+     margin-bottom: 1%;
+    } 
+    
+    .options{
+        margin-top:2%;
+        padding:2%;
+        height:20%;
     }  
 }
 
 @media screen and (max-width: 730px) {
-    /*---------------------*/
-    /*Wrong Access*/
-    /* --------------------*/
     #wrongAccess{
         margin-left: 15%;
     }
@@ -228,10 +234,7 @@ form{
         margin-left: 10%;
     }
     
-    .formPages > div > a:link{
-        margin-left: 37%;   
+    .formPages > div > a:link {
+        margin-left : 37%;   
     }
-    
-    
-  
 }

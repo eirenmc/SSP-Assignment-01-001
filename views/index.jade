@@ -1,20 +1,18 @@
 extends layout
 
 block content
-    h1 Welcome to the Secret Vault !
+    h1#introTitle Welcome to the Secret Vault !
     .intro
         img(src="/images/closedLock.png")
-    br
     .intro
         #options 
-            br
             br
             strong Shhhhh, 
             span keep quiet people are trying to store their secrets
             br
             br
             p The secret vault is the place where you can keep all your deepest and darket secrets safe from prying eyes, 
-            span where secrets are kept secret and only you can access them !
+            span Where secrets are kept from prying eyes !
             br
             br
             //
@@ -24,7 +22,8 @@ block content
                 the routes folder and access the index.js in order to interpret where or what I am doing. I am using this, 
                 in this case to send a get request to change the page, I use this on a number of my pages to allow me the 
                 ability to switch pages
-            h4 Please <a href="/login">login</a> or <a href="/register">register</a> to access your Secret Vault
+            div<a href="/login">login</a> or <a href="/register">Register an Account</a>
+            
    
     
     
