@@ -276,7 +276,7 @@ router.post('/secrets', function(req, res, next){
                     conn.close();
                     });
                 }
-            }  
+            });  
           /////////////////////////////////////////////////////////////////////////////////////
             
            // Orignally had this line, but it was causing an error to occur about 
