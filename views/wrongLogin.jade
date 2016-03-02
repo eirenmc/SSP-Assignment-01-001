@@ -1,9 +1,11 @@
 extends layout
 
 block content
-    h1 Opps ! Must be a wrong login
-    .notice    
-        p Please click go back to try again
+    div#wrongLogin
+        h1 Opps ! Wrong Login
         br
-        br
-        button <a href="/login">Go Back </a>
+        img(src="/images/wrongLogin.png") 
+        br   
+        .wrongLoginText
+            h4 Oh gosh, your login details weren't correct, Please go back to try again
+            div<a href="/login">Lets try again</a>

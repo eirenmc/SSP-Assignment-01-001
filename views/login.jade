@@ -1,22 +1,22 @@
 extends layout
 
 block content
-    h1  Login to your Vault
-    br
-    form(action="/login" method="post" class='style')
-        label(for='username') Username:
+    div.formPages
+        h1#form  Login
         br
-        input(type='text' name='username')
+        form(action="/login" method="post" class='style')
+            label(for='username') Username:
+            br
+            input(type='text' name='username')
+            br
+            br
+            label(for='password') Password:
+            br
+            input(type='password', name='password')
+            br
+            br
+            input(type='submit', value='submit')
+            br
         br
-        br
-        label(for='password') Password:
-        br
-        input(type='password', name='password')
-        br
-        br
-        input(type='submit', value='submit')
-        br
-    br
-    br
-    button <a href="/">Return Home </a>       
+        div<a href="/">Return Home </a>       
             

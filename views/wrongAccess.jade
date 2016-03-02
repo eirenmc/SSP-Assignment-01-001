@@ -1,9 +1,12 @@
 extends layout
 
 block content
-    h1 Tut tut tut....
-    .notice    
-        p You should not be trying to access secrets this, thats just jude, please go back and login
+   div#wrongAccess 
+        h1 Tut tut tut....
         br
+        img(src="/images/wrongAccess.jpg") 
         br
-        button <a href="/login">Login</a>
+        .wrongAText   
+            h4 Trying to access secrets without a login.... How could you !
+            h4 I'm heartbroken that you would do this
+            div<a href="/login">Fine, I'll Login</a>    
