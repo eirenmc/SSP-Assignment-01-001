@@ -216,26 +216,20 @@ router.post('/secrets', function(req, res, next){
     // A secret entry onto the secret page does not occur until it has been pushed into the array and the page is
     //'reloaded' but unaware to the user, to show the newest and old secrets
     var secret = {};
-    
- /* -- */
     secret.id = secretCounter;
-/* -- */
-   
     secret.secretMessage = req.body.addSecretText;
-  /*  var date = new Date();
+    
+    var date = new Date();
     var currentDay = date.getDay();
     var currentMonth = date.getMonth();
     var currentYear = date.getFullYear();
     var combinedDate = currentDay + "/" + currentMonth + "/" + currentYear;
-    secret.date = combinedDate;*/
+    secret.date = combinedDate;
     //I am increasing the secretCounter as it is acting as ids for each object. By increasing this number after
     // each object is made, this ensures that each object has a unqiue id
-///////////
-/**/
-    secretCounter++;
-  //  console.log(secretCounter);
 
-//////////    
+    secretCounter++;
+   
     // Here I am pushing the objects into the array, so I can loop through them   
     allSecretVault.push(secret);
     
@@ -257,9 +251,10 @@ router.post('/secrets', function(req, res, next){
                 }
             });
             
-            // Notice that I render the index page without even waiting for the db to say that 
-            // it has inserted the document
-            res.render('secrets', { title: 'Secret Vault' });
+           // Orignally had this line, but it was causing an error to occur about 
+           // unable to set errors after they are sent, I found by commenting this
+           // out the web application works fine and there doesn't seem to be a problem
+           // res.render('secrets', { title: 'Secret Vault' });
         }
     });
     
