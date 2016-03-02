@@ -266,10 +266,17 @@ router.post('/secrets', function(req, res, next){
                     throw err;
                 }
                 else {
+                    /* */
+                    var cursor = conn.collection('secrets').find();
+                    cursor.toArray(function(err, docs){
+                        res.render('secrets', {secret: docs}); 
+                    });
+                    /* */
                     console.log("Insertion complete");
                     conn.close();
                 }
             });
+            
           /////////////////////////////////////////////////////////////////////////////////////
             
            // Orignally had this line, but it was causing an error to occur about 
