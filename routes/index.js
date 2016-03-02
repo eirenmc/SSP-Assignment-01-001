@@ -24,13 +24,15 @@ var password;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
+// Here are the Mongo requireing in order to get mongoDB to work, I am also making the url 
+// variable equal the either the set connection string from MongoDB or use the local host
 var mongoClient = require('mongodb').MongoClient;
 var url = process.env.CUSTOMCONNSTR_MongoDB || 'mongodb://localhost:27017/secretVaultData'; 
 
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
-/* GET home page. */
+
+
+/* GET home page.*/
 // If the user goes to a the page with just a / at the end of the url, it will default to the
 // index page, this is to ensure that the user doesn't end up in the secrets pae or somewhere else
 router.get('/', function(req, res, next) {
@@ -136,11 +138,10 @@ router.get('/secrets', function(req, res, next){
     // I used this loop to loop through each object in the array and console out the secret message of each, I 
     // used this for testing purposes to ensure that the secret message were storing correctly and that they 
     //were in fact hold onto a message    
-    /*
-    for(var i = 0; i < allSecretVault.length; i++){
+    
+   /* for(var i = 0; i < allSecretVault.length; i++){
         console.log(allSecretVault[i].secretMessage);
-    }
-    */
+    }*/
     
     // When on the secrets page, I need to make sure that the user did in fact login and not not just go to the
     // secrets page. To do this, I am using the username and password variables again. If the user logged in then
@@ -150,7 +151,7 @@ router.get('/secrets', function(req, res, next){
     // and the user is re-directed back to the login page.
     if(username == "eiren" && password == "student"){ 
         
-// I am console logging out the username just to ensure that 'eiren' is being passed through and that it is the stored value
+        // I am console logging out the username just to ensure that 'eiren' is being passed through and that it is the stored value
         console.log("the correct username is: " + username);
         
         // This line is rendering the secrets page, as the user is requesting, I need to direct them to it. I am also trying
@@ -175,9 +176,11 @@ router.get('/wrongAccess', function(req, res, next){
 
 
 router.get('/secrets', function(req, res, next){
-   ////////////
- //  res.render('secrets.jade', {secrets:allSecretVault}); 
-   ////////////
+
+  //res.render('secrets.jade', {secrets:allSecretVault});
+  //res.json(req.body); 
+  
+   ////////////////////////////////////////////////////////////
    console.log("please work");
     mongoClient.connect(url, function(err, conn) {
        if (err) {
@@ -190,6 +193,7 @@ router.get('/secrets', function(req, res, next){
            });
        }
     });
+   //////////////////////////////////////////////////////////// 
 });
 
 
@@ -213,23 +217,19 @@ router.post('/secrets', function(req, res, next){
     //'reloaded' but unaware to the user, to show the newest and old secrets
     var secret = {};
     
- ///////
- /*  
-    secret.id = secretCounter;
-*/
-////////    
+ /* -- */
+   // secret.id = secretCounter;
+/* -- */
+   
     secret.secretMessage = req.body.addSecretText;
-      
-    //Something the session
-    //secret.id = eq.session.secretCounter++;
     
     //I am increasing the secretCounter as it is acting as ids for each object. By increasing this number after
     // each object is made, this ensures that each object has a unqiue id
 ///////////
-/*
-    secretCounter++;
-    console.log(secretCounter);
-*/
+/**/
+  //  secretCounter++;
+  //  console.log(secretCounter);
+
 //////////    
     // Here I am pushing the objects into the array, so I can loop through them   
     allSecretVault.push(secret);
@@ -258,15 +258,15 @@ router.post('/secrets', function(req, res, next){
         }
     });
     
-    //req.session.allSecretVault.push(secret);
+   // req.session.allSecretVault.push(secret);
     
     // Once a secret has been pushed in the array, I am reloading the secrets page, so that
     // it 'refreshes' but occurs in the background and the user is unaware and the secrets
     // have updated and are added to the page for the user to see
 ///////////   
-/*   
+/* */  
     res.redirect('/secrets');
-*/
+
 ///////////    
 });
 
